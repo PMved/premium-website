@@ -27,8 +27,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- Master Stylesheet -->
+  <!-- Master Stylesheet (Supports both root & css/ folder on GitHub) -->
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    // Automatic fallback for image paths on GitHub Pages
+    window.addEventListener('error', function(e) {
+      if (e.target && e.target.tagName === 'IMG') {
+        var s = e.target.getAttribute('src');
+        if (s && s.indexOf('assets/') === 0) {
+          e.target.src = s.substring(7);
+        } else if (s && s.indexOf('http') !== 0 && s.indexOf('data:') !== 0 && s.indexOf('assets/') === -1) {
+          e.target.src = 'assets/' + s;
+        }
+      }
+    }, true);
+  </script>
 
   <!-- Physician & Hospital Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -598,8 +613,10 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Scripts (Supports both root & js/ folder on GitHub) -->
+  <script src="analytics.js"></script>
   <script src="js/analytics.js"></script>
+  <script src="app.js"></script>
   <script src="js/app.js"></script>
   
 
