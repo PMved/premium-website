@@ -304,18 +304,21 @@ function initBookingModal() {
       );
       const waUrl = `https://wa.me/917869392498?text=${waText}`;
 
-      // Show confirmed success message
+      // Open WhatsApp to route request directly to clinic desk
+      window.open(waUrl, '_blank');
+
+      // Show transparent submission guidance
       if (alertSuccess) {
         const safeName = escapeHtml(name);
         const safePhone = escapeHtml(phone);
         alertSuccess.className = 'modal-success-card';
         alertSuccess.innerHTML = `
-          <div class="success-icon-badge"><i class="fa fa-check"></i></div>
+          <div class="success-icon-badge"><i class="fa fa-whatsapp"></i></div>
           <div class="success-content">
-            <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Consultation Request Received!</strong>
-            <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Our clinical coordinator at Apollo Rajshree Hospital will contact you shortly on <strong>+91 ${safePhone}</strong> to confirm your slot.</p>
+            <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Opening WhatsApp to Complete Booking...</strong>
+            <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Your appointment request is prepared for Dr. Chipde's clinical coordination desk at Apollo Rajshree Hospital.</p>
             <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="display:inline-flex; align-items:center; gap:6px; padding:9px 16px; font-size:0.875rem;">
-              <i class="fa fa-whatsapp"></i> Also Notify Clinic on WhatsApp for Faster Confirmation
+              <i class="fa fa-whatsapp"></i> Click Here if WhatsApp Did Not Open Automatically
             </a>
           </div>
         `;
@@ -363,17 +366,20 @@ function initStandaloneBookingForm() {
     );
     const waUrl = `https://wa.me/917869392498?text=${waText}`;
 
+    // Open WhatsApp directly
+    window.open(waUrl, '_blank');
+
     if (alertSuccess) {
       const safeName = escapeHtml(name);
       const safePhone = escapeHtml(phone);
       alertSuccess.className = 'modal-success-card';
       alertSuccess.innerHTML = `
-        <div class="success-icon-badge"><i class="fa fa-check"></i></div>
+        <div class="success-icon-badge"><i class="fa fa-whatsapp"></i></div>
         <div class="success-content">
-          <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Request Received!</strong>
-          <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Our clinical desk at Apollo Rajshree Hospital has received your details and will call or message you shortly on <strong>+91 ${safePhone}</strong>.</p>
+          <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Opening WhatsApp to Complete Booking...</strong>
+          <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Your appointment request is prepared for Dr. Chipde's clinical coordination desk at Apollo Rajshree Hospital.</p>
           <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="display:inline-flex; align-items:center; gap:6px; padding:9px 16px; font-size:0.875rem;">
-            <i class="fa fa-whatsapp"></i> Send Direct Confirmation on WhatsApp
+            <i class="fa fa-whatsapp"></i> Click Here if WhatsApp Did Not Open Automatically
           </a>
         </div>
       `;

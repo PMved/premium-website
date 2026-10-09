@@ -101,14 +101,8 @@
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "12:00",
-        "closes": "15:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Sunday"],
         "opens": "10:00",
-        "closes": "12:00"
+        "closes": "16:00"
       }
     ],
     "knowsAbout": [
@@ -163,7 +157,7 @@
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"What is laser lithotripsy (RIRS) for kidney stones?","acceptedAnswer":{"@type":"Answer","text":"Laser lithotripsy via Retrograde Intrarenal Surgery (RIRS) is an advanced endoscopic procedure where a thin digital flexible scope is passed through the natural urinary tract into the kidney. A laser fiber pulverizes the stone into dust without skin cuts."}},{"@type":"Question","name":"How large of a kidney stone can be treated with laser lithotripsy?","acceptedAnswer":{"@type":"Answer","text":"RIRS laser lithotripsy is ideal for stones up to 1.5–2.0 cm in diameter, as well as multiple or lower-pole stones. Stones larger than 2 cm may be treated with Mini-PCNL keyhole surgery, Pyelolithotomy, or staged procedures."}},{"@type":"Question","name":"Is kidney stone laser surgery painful?","acceptedAnswer":{"@type":"Answer","text":"The procedure is performed under spinal or general anesthesia, meaning patients feel zero pain during surgery. Post-operative discomfort is mild and easily controlled with oral analgesics."}},{"@type":"Question","name":"What emergency symptoms indicate immediate hospital evaluation?","acceptedAnswer":{"@type":"Answer","text":"Seek urgent emergency medical care if kidney stone pain is accompanied by fever with chills/shivering, continuous vomiting, or complete inability to pass urine, as this may indicate an infected obstructed kidney."}}]
+    "mainEntity": [{"@type":"Question","name":"What is laser lithotripsy (RIRS) for kidney stones?","acceptedAnswer":{"@type":"Answer","text":"Laser lithotripsy via Retrograde Intrarenal Surgery (RIRS) is an advanced endoscopic procedure where a thin digital flexible scope is passed through the natural urinary tract into the kidney. A laser fiber pulverizes the stone into dust without skin cuts."}},{"@type":"Question","name":"How large of a kidney stone can be treated with laser lithotripsy?","acceptedAnswer":{"@type":"Answer","text":"RIRS laser lithotripsy is ideal for stones up to 1.5–2.0 cm in diameter, as well as multiple or lower-pole stones. Stones larger than 2 cm may be treated with Mini-PCNL keyhole surgery, Pyelolithotomy, or staged procedures."}},{"@type":"Question","name":"Is kidney stone laser surgery painful?","acceptedAnswer":{"@type":"Answer","text":"The procedure is performed under spinal or general anesthesia so the patient remains comfortable throughout the operation. Post-procedure sensations are typically mild and effectively managed with standard oral analgesics."}},{"@type":"Question","name":"What emergency symptoms indicate immediate hospital evaluation?","acceptedAnswer":{"@type":"Answer","text":"Seek urgent emergency medical care if kidney stone pain is accompanied by fever with chills/shivering, continuous vomiting, or complete inability to pass urine, as this may indicate an infected obstructed kidney."}}]
   }
   </script>
   <!-- BreadcrumbList Structured Data -->
@@ -3549,10 +3543,10 @@ p:last-child {
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
         <div style="background:var(--bg-page); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:28px;">
-          <span style="font-size:0.8rem; font-weight:700; color:var(--color-navy); background:var(--bg-white); padding:3px 10px; border-radius:var(--radius-full); border:1px solid var(--border-subtle);">Zero Cuts</span>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--color-navy); background:var(--bg-white); padding:3px 10px; border-radius:var(--radius-full); border:1px solid var(--border-subtle);">Endoscopic Access</span>
           <h3 style="color:var(--color-navy); font-size:1.3rem; margin:12px 0 8px;">Laser Lithotripsy (RIRS)</h3>
           <p style="font-size:0.95rem; color:var(--text-muted); line-height:1.65; margin:0;">
-            A high-definition flexible digital ureteroscope is passed through the natural urinary channel into the kidney calyces. A fine laser fiber pulverizes the stone into fine sand. No skin cuts; same-day or 24-hour discharge.
+            A high-definition flexible digital ureteroscope is passed through the natural urinary channel into the kidney calyces. A fine laser fiber pulverizes the stone into fine dust without skin incisions, with same-day or short observation stay for eligible patients.
           </p>
         </div>
 
@@ -3617,7 +3611,7 @@ p:last-child {
             <i class="fa fa-chevron-down faq-icon"></i>
           </button>
           <div class="faq-answer">
-            <p>The procedure is performed under spinal or general anesthesia, meaning patients feel zero pain during surgery. Post-operative discomfort is mild and easily controlled with oral analgesics.</p>
+            <p>The procedure is performed under spinal or general anesthesia so the patient remains comfortable throughout the operation. Post-procedure sensations are typically mild and effectively managed with standard oral analgesics.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -3668,7 +3662,7 @@ p:last-child {
           </div>
           <div class="modal-trust-strip">
             <span class="modal-trust-pill"><i class="fa fa-lock" aria-hidden="true"></i> Strictly Confidential</span>
-            <span class="modal-trust-pill"><i class="fa fa-clock-o" aria-hidden="true"></i> Mon–Sat 10 AM–6 PM</span>
+            <span class="modal-trust-pill"><i class="fa fa-clock-o" aria-hidden="true"></i> Mon–Sat 10 AM–4 PM</span>
           </div>
         </div>
         <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
@@ -3679,8 +3673,8 @@ p:last-child {
         <div id="bookingSuccessAlert" class="modal-success-card" style="display:none;" role="status">
           <div class="success-icon-badge"><i class="fa fa-check"></i></div>
           <div class="success-content">
-            <strong>Consultation Request Received!</strong>
-            <p>Thank you. Our clinic coordinator will contact you promptly via Call or WhatsApp to confirm your preferred appointment slot.</p>
+            <strong>Consultation Request Initiated!</strong>
+            <p>Your appointment details have been prepared for Dr. Chipde's clinical coordination desk. If WhatsApp did not open automatically, click the button below to complete sending your request.</p>
           </div>
         </div>
 
@@ -3732,7 +3726,7 @@ p:last-child {
             </label>
             <input type="date" id="bookDate" name="date" class="form-control">
             <div class="field-clinic-hours">
-              <i class="fa fa-clock-o" aria-hidden="true"></i> Regular OPD Timings: Monday – Saturday, 10:00 AM – 06:00 PM
+              <i class="fa fa-clock-o" aria-hidden="true"></i> Regular OPD Timings: Monday – Saturday, 10:00 AM – 04:00 PM
             </div>
           </div>
 
@@ -3761,7 +3755,7 @@ p:last-child {
 
           <!-- Submit CTA -->
           <button type="submit" class="btn-modal-submit" id="bookSubmitBtn">
-            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Confirm Consultation Request
+            <i class="fa fa-whatsapp" aria-hidden="true"></i> Send Request via Clinic WhatsApp
           </button>
 
           <!-- Urgent Assistance Notice -->
@@ -3834,7 +3828,7 @@ p:last-child {
             <strong style="color:var(--color-gold);">Recipient of Dr. Velidandla Hanumantha Rao Gold Medal</strong>
           </p>
           <p style="color:var(--text-light); font-size:0.825rem; margin-bottom:12px; line-height:1.4;">
-            <strong style="color:#ffffff;">Registration:</strong> MP Medical Council [PENDING REVIEW: Registration Number] • <strong>20+ Years Clinical Experience</strong>
+            <strong style="color:#ffffff;">Senior Consultant Urologist</strong> • <strong>20+ Years Clinical Career</strong>
           </p>
           <p style="color:var(--text-light); font-size:0.85rem; line-height:1.5;">
             Senior Consultant Urologist, Robotic & Renal Transplant Surgeon at Apollo Rajshree Hospital, Indore.
@@ -3872,7 +3866,7 @@ p:last-child {
             <strong>WhatsApp:</strong> <a href="https://wa.me/917869392498?text=Hello%20Dr.%20Chipde%27s%20clinic" target="_blank" rel="noopener" style="color:var(--color-gold);">Message Clinic</a>
           </p>
           <p style="color:var(--text-light); font-size:0.825rem; line-height:1.5; margin-bottom:8px;">
-            <strong>OPD Schedule:</strong> Mon–Sat 12:00 PM – 3:00 PM | Sun 10:00 AM – 12:00 PM
+            <strong>OPD Schedule:</strong> Monday – Saturday: 10:00 AM – 04:00 PM
           </p>
           <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:6px;">
             <a href="https://share.google/EfvKhwt6lKf6hsZgl" target="_blank" rel="noopener noreferrer" style="color:var(--color-gold); display:inline-flex; align-items:center; gap:6px;">
