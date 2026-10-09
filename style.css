@@ -1872,3 +1872,538 @@ p:last-child {
 .disclaimer-card strong {
   color: var(--color-navy);
 }
+
+
+
+/* ==========================================================================
+   CHANGE REQUEST (CR) - NAVIGATION, DROPDOWNS & FLOATING SIDEBAR
+   ========================================================================== */
+
+/* Dropdown Menu Enhancements */
+.nav-item.has-dropdown {
+  position: relative;
+}
+
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+  background: transparent;
+}
+
+.dropdown-two-col {
+  padding: 0 !important;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.category-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.category-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-navy);
+  padding: 4px 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.category-link {
+  display: block;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  line-height: 1.35;
+}
+
+.category-link:hover {
+  background-color: var(--bg-section-alt);
+  color: var(--color-navy);
+  transform: translateX(2px);
+}
+
+.category-link span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.dropdown-footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 18px;
+  background-color: var(--bg-section-alt);
+  border-top: 1px solid var(--border-subtle);
+  border-radius: 0 0 calc(var(--radius-md) - 1px) calc(var(--radius-md) - 1px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-footer-cta:hover {
+  background-color: #E2EBF2;
+  color: var(--color-gold);
+}
+
+/* ---------------- Desktop Floating Utility Sidebar (CR Section 10-12) ---------------- */
+.floating-utility-sidebar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding-right: 0;
+}
+
+/* Section A: Book Appointment */
+.floating-book-pill {
+  background: var(--color-navy);
+  color: #ffffff;
+  border: 1px solid rgba(198, 161, 91, 0.4);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 10px 4px;
+  box-shadow: -3px 4px 18px rgba(11, 31, 51, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  width: 58px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.floating-book-pill:hover,
+.floating-book-pill:focus-visible {
+  background: #061320;
+  color: var(--color-gold);
+  width: 64px;
+  transform: translateX(-4px);
+  box-shadow: -4px 6px 22px rgba(11, 31, 51, 0.25);
+}
+
+.floating-book-pill i {
+  font-size: 1.15rem;
+  color: var(--color-gold);
+}
+
+.floating-book-text {
+  display: block;
+  letter-spacing: 0.02em;
+}
+
+/* Section B: Vertical Social Presence Rail */
+.floating-social-rail {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 8px 5px;
+  box-shadow: -3px 4px 18px rgba(11, 31, 51, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 58px;
+}
+
+.utility-social-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-navy);
+  border-radius: 6px;
+  font-size: 1.15rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.utility-social-icon:hover,
+.utility-social-icon:focus-visible {
+  background: var(--bg-section-alt);
+  color: var(--color-gold);
+  transform: scale(1.1);
+}
+
+/* CSS Tooltip on Hover */
+.utility-social-icon[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--color-navy);
+  color: #ffffff;
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(11, 31, 51, 0.25);
+  z-index: 1000;
+}
+
+.utility-social-icon[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  right: calc(100% + 4px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  border-width: 4px 0 4px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--color-navy);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.utility-social-icon[data-tooltip]:hover::before,
+.utility-social-icon[data-tooltip]:hover::after,
+.utility-social-icon[data-tooltip]:focus-visible::before,
+.utility-social-icon[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Mobile & Tablet Responsive Constraint: Hidden <= 1024px */
+@media (max-width: 1024px) {
+  .floating-utility-sidebar {
+    display: none !important;
+  }
+}
+
+/* ---------------- Mobile Drawer Accordions (CR Section 8 & 13) ---------------- */
+.mobile-accordion-group {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobile-accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+}
+
+.mobile-accordion-btn:hover,
+.mobile-accordion-btn.active {
+  background: var(--bg-section-alt);
+  color: var(--color-navy);
+}
+
+.mobile-accordion-btn .accordion-icon {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  transition: transform 0.25s ease;
+}
+
+.mobile-accordion-btn.active .accordion-icon {
+  transform: rotate(180deg);
+  color: var(--color-gold);
+}
+
+.mobile-accordion-panel {
+  display: none;
+  padding: 4px 10px 12px 18px;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 2px solid var(--color-gold);
+  margin: 0 10px 8px 14px;
+  background: #FAFCFE;
+  border-radius: 0 4px 4px 0;
+}
+
+.mobile-accordion-panel.open {
+  display: flex;
+}
+
+.mobile-accordion-subtitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 8px 0 2px;
+  padding: 0 6px;
+}
+
+.mobile-panel-link {
+  display: block;
+  padding: 7px 8px;
+  font-size: 0.875rem;
+  color: var(--text-body);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.15s ease, color 0.15s ease;
+  line-height: 1.35;
+}
+
+.mobile-panel-link:hover {
+  background: var(--bg-section-alt);
+  color: var(--color-navy);
+}
+
+.mobile-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  padding: 6px 8px;
+}
+
+.mobile-panel-cta:hover {
+  text-decoration: underline;
+}
+
+
+/* ---------------- Top Emergency & Clinical Header (Homepage) ---------------- */
+.site-topbar-wrapper {
+  width: 100%;
+  position: relative;
+  z-index: 1002;
+}
+
+/* 1. Red Emergency Guidance Bar */
+.emergency-guidance-bar {
+  background: #8B1E1E;
+  background: linear-gradient(90deg, #8B1E1E 0%, #761818 100%);
+  color: #ffffff;
+  padding: 10px 0;
+  font-family: var(--font-body);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.emergency-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.emergency-text-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 650px;
+}
+
+.emergency-icon-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.emergency-message {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #FFF5F5;
+}
+
+.emergency-title {
+  color: #ffffff;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.emergency-desc {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.emergency-cta-group {
+  flex-shrink: 0;
+}
+
+.emergency-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #8B1E1E;
+  font-size: 0.825rem;
+  font-weight: 700;
+  padding: 7px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.emergency-call-btn:hover,
+.emergency-call-btn:focus-visible {
+  background: #FFF5F5;
+  color: #6E1212;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.emergency-call-btn i {
+  color: #8B1E1E;
+}
+
+/* 2. Navy Clinical Info Strip */
+.clinical-info-strip {
+  background: #081B2E;
+  color: #E2E8F0;
+  padding: 7px 0;
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.clinical-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.clinical-strip-left {
+  display: flex;
+  align-items: center;
+}
+
+.facility-capsule-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(14, 116, 144, 0.35);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  color: #5EEAD4;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.facility-capsule-badge i {
+  color: #2DD4BF;
+}
+
+.clinical-strip-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.clinical-strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #CBD5E1;
+  font-weight: 500;
+}
+
+.clinical-strip-item i {
+  color: #94A3B8;
+  font-size: 0.85rem;
+}
+
+.strip-link {
+  color: #E2E8F0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.strip-link:hover,
+.strip-link:focus-visible {
+  color: var(--color-gold);
+}
+
+.strip-link i {
+  color: var(--color-gold);
+}
+
+/* Mobile & Tablet responsiveness for topbar */
+@media (max-width: 992px) {
+  .emergency-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .emergency-cta-group {
+    width: 100%;
+  }
+  .emergency-call-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .clinical-strip-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .clinical-strip-right {
+    gap: 10px;
+  }
+}
