@@ -1,0 +1,48 @@
+# ==============================================================================
+# Dr. Saurabh Chipde - High-Security Production .htaccess (Apache / LiteSpeed)
+# ==============================================================================
+
+# 1. Force HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+
+# 2. Prevent Directory Browsing
+Options -Indexes
+
+# 3. Block Sensitive Files & Hidden Files
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# 4. Comprehensive Security Headers
+<IfModule mod_headers.c>
+  # HTTP Strict Transport Security (HSTS) - 1 Year with Subdomains
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Prevent MIME-Sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Prevent Clickjacking (Frame-Options)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Referrer Policy for Maximum Privacy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Modern Permissions Policy (Disables unwanted hardware APIs)
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+  # Cross-Site Scripting Protection (Legacy Browser Fallback)
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Content Security Policy (CSP)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://wa.me;"
+</IfModule>
+
+# 5. Gzip & Deflate Compression for Speed
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>

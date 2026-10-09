@@ -4,7 +4,23 @@
  * WCAG AA Compliant • Zero Heavy Dependencies
  */
 
+/**
+ * HTML entity escaping utility to prevent DOM-based XSS attacks
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.__chipdeAppInitialized) return;
+  window.__chipdeAppInitialized = true;
+
   initStickyHeader();
   initDropdownMenus();
   initMobileNav();
@@ -263,7 +279,6 @@ function initBookingModal() {
       const phone = (form.querySelector('#bookPhone') || form.querySelector('#patientPhone'))?.value.trim();
       const reason = (form.querySelector('#bookingReason') || form.querySelector('#reason'))?.value || 'General Urology';
       const date = (form.querySelector('#bookDate') || form.querySelector('#bookingDate'))?.value;
-      const time = (form.querySelector('#bookTime') || form.querySelector('#bookingTime'))?.value;
       const message = (form.querySelector('#bookMessage') || form.querySelector('#patientMessage'))?.value.trim();
       const consent = (form.querySelector('#bookConsent') || form.querySelector('#bookingConsent'))?.checked;
 
@@ -272,28 +287,39 @@ function initBookingModal() {
         return;
       }
 
+      if (phone.replace(/\D/g, '').length < 10) {
+        alert('Please enter a valid 10-digit mobile number.');
+        return;
+      }
+
       if (!consent) {
         alert('Please consent to contact from our clinic desk.');
         return;
       }
 
-      // Generate pre-filled WhatsApp link
+      // Generate pre-filled WhatsApp link (Preferred Time removed)
       const waText = encodeURIComponent(
-        `Hello Dr. Chipde's clinic team,\nI have submitted an appointment request.\n\nName: ${name}\nPhone: ${phone}\nReason: ${reason}\nPreferred Date: ${date || 'Earliest available'}\nPreferred Time: ${time || 'Morning OPD'}` +
+        `Hello Dr. Chipde's clinic team,\nI have submitted an appointment request.\n\nName: ${name}\nPhone: +91 ${phone}\nConcern: ${reason}\nPreferred Date: ${date || 'Earliest available'}` +
         (message ? `\nNote: ${message}` : '')
       );
       const waUrl = `https://wa.me/917869392498?text=${waText}`;
 
       // Show confirmed success message
       if (alertSuccess) {
+        const safeName = escapeHtml(name);
+        const safePhone = escapeHtml(phone);
+        alertSuccess.className = 'modal-success-card';
         alertSuccess.innerHTML = `
-          <strong style="display:block; font-size:1.05rem; margin-bottom:6px;"><i class="fa fa-check-circle"></i> Appointment Request Received!</strong>
-          Thank you, ${name}. Our clinic desk at Apollo Hospitals Indore will contact you shortly to confirm your consultation time.<br><br>
-          <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm" style="width:100%; justify-content:center;">
-            <i class="fa fa-whatsapp"></i> Also Notify Clinic on WhatsApp for Instant Confirmation
-          </a>
+          <div class="success-icon-badge"><i class="fa fa-check"></i></div>
+          <div class="success-content">
+            <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Consultation Request Received!</strong>
+            <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Our clinical coordinator at Apollo Rajshree Hospital will contact you shortly on <strong>+91 ${safePhone}</strong> to confirm your slot.</p>
+            <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="display:inline-flex; align-items:center; gap:6px; padding:9px 16px; font-size:0.875rem;">
+              <i class="fa fa-whatsapp"></i> Also Notify Clinic on WhatsApp for Faster Confirmation
+            </a>
+          </div>
         `;
-        alertSuccess.style.display = 'block';
+        alertSuccess.style.display = 'flex';
         form.reset();
       }
     });
@@ -313,12 +339,16 @@ function initStandaloneBookingForm() {
     const phone = form.querySelector('#pageBookPhone')?.value.trim();
     const reason = form.querySelector('#pageBookingReason')?.value || 'General Consultation';
     const date = form.querySelector('#pageBookDate')?.value;
-    const time = form.querySelector('#pageBookTime')?.value;
     const message = form.querySelector('#pageBookMessage')?.value.trim();
     const consent = form.querySelector('#pageBookConsent')?.checked;
 
     if (!name || !phone) {
       alert('Please provide your full name and 10-digit mobile number.');
+      return;
+    }
+
+    if (phone.replace(/\D/g, '').length < 10) {
+      alert('Please enter a valid 10-digit mobile number.');
       return;
     }
 
@@ -328,20 +358,26 @@ function initStandaloneBookingForm() {
     }
 
     const waText = encodeURIComponent(
-      `Hello Dr. Chipde's clinic,\nI have booked an appointment online.\n\nName: ${name}\nMobile: ${phone}\nConcern: ${reason}\nDate: ${date || 'Earliest'}\nTime: ${time || 'Morning OPD'}` +
+      `Hello Dr. Chipde's clinic,\nI have submitted an appointment request online.\n\nName: ${name}\nMobile: +91 ${phone}\nConcern: ${reason}\nDate: ${date || 'Earliest Available'}` +
       (message ? `\nNote: ${message}` : '')
     );
     const waUrl = `https://wa.me/917869392498?text=${waText}`;
 
     if (alertSuccess) {
+      const safeName = escapeHtml(name);
+      const safePhone = escapeHtml(phone);
+      alertSuccess.className = 'modal-success-card';
       alertSuccess.innerHTML = `
-        <strong style="display:block; font-size:1.05rem; margin-bottom:6px;"><i class="fa fa-check-circle"></i> Request Received!</strong>
-        Thank you, ${name}. Our hospital clinic desk has received your details and will call you to confirm your time slot.<br><br>
-        <a href="${waUrl}" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm" style="width:100%; justify-content:center;">
-          <i class="fa fa-whatsapp"></i> Send Direct Confirmation on WhatsApp
-        </a>
+        <div class="success-icon-badge"><i class="fa fa-check"></i></div>
+        <div class="success-content">
+          <strong style="display:block; font-size:1.05rem; margin-bottom:4px; color:#166534;"><i class="fa fa-check-circle"></i> Request Received!</strong>
+          <p style="margin:0 0 10px; font-size:0.9rem; color:#14532D; line-height:1.5;">Thank you, ${safeName}. Our clinical desk at Apollo Rajshree Hospital has received your details and will call or message you shortly on <strong>+91 ${safePhone}</strong>.</p>
+          <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm" style="display:inline-flex; align-items:center; gap:6px; padding:9px 16px; font-size:0.875rem;">
+            <i class="fa fa-whatsapp"></i> Send Direct Confirmation on WhatsApp
+          </a>
+        </div>
       `;
-      alertSuccess.style.display = 'block';
+      alertSuccess.style.display = 'flex';
       form.reset();
       alertSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }

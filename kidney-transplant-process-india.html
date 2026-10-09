@@ -96,7 +96,7 @@
     "award": [
       "Dr. Velidandla Hanumantha Rao Gold Medal for Excellence in Post Graduation"
     ],
-    "priceRange": "₹900",
+    "priceRange": "$$",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -133,7 +133,7 @@
       "https://www.youtube.com/@DrSaurabhChipde",
       "https://www.facebook.com/drsaurabhchipde",
       "https://www.linkedin.com/in/dr-saurabh-chipde-639a042b/",
-      "https://maps.app.goo.gl/HjpdFkirMJnVzg6C9",
+      "https://share.google/EfvKhwt6lKf6hsZgl",
       "https://www.apollohospitals.com/doctors/urologist/indore/dr-saurabh-chipde"
     ]
   }
@@ -154,7 +154,7 @@
       "addressCountry": "IN"
     },
     "telephone": "+91-78693-92498",
-    "priceRange": "₹900",
+    "priceRange": "$$",
     "url": "https://pmved.github.io/premium-website/kidney-transplant-process-india.html"
   }
   </script>
@@ -273,6 +273,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -284,6 +286,8 @@ body {
   font-weight: 400;
   padding-bottom: 70px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 @media (min-width: 992px) {
@@ -355,6 +359,13 @@ p:last-child {
   margin-right: auto;
   padding-left: 24px;
   padding-right: 24px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 /* ---------------- Badges & Eyebrows ---------------- */
@@ -942,51 +953,88 @@ p:last-child {
 .credential-strip {
   background-color: var(--bg-page);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 32px 0;
+  padding: 24px 0 22px;
 }
 
 .credential-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media (min-width: 768px) {
-  .credential-grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-  }
+  gap: 16px 12px;
+  align-items: center;
 }
 
 .credential-item {
   text-align: center;
   position: relative;
+  padding: 4px 6px;
 }
 
-@media (min-width: 768px) {
-  .credential-item:not(:last-child)::after {
+.credential-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+
+.credential-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* Tablet: 3 columns (2 rows of 3) */
+@media (min-width: 576px) and (max-width: 991px) {
+  .credential-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 14px;
+  }
+  .credential-item:not(:nth-child(3n))::after {
     content: '';
     position: absolute;
-    right: 0;
-    top: 20%;
-    height: 60%;
+    right: -7px;
+    top: 15%;
+    height: 70%;
     width: 1px;
     background: var(--border-subtle);
   }
 }
 
-.credential-title {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--color-navy);
-  line-height: 1.2;
+/* Mobile: 2 columns (3 rows of 2) */
+@media (max-width: 575px) {
+  .credential-item:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: var(--border-subtle);
+  }
 }
 
-.credential-sub {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 4px;
+/* Desktop: 6 columns (1 single balanced row of 6 items) */
+@media (min-width: 992px) {
+  .credential-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .credential-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background: var(--border-subtle);
+  }
+  .credential-title {
+    font-size: 1.08rem;
+  }
+  .credential-sub {
+    font-size: 0.78rem;
+  }
 }
 
 /* ==========================================================================
@@ -1372,83 +1420,453 @@ p:last-child {
   visibility: visible;
 }
 
+/* ---------------- High-End Clinical Appointment Modal ---------------- */
 .modal-dialog {
   background: #ffffff;
-  border-radius: var(--radius-md);
-  max-width: 540px;
-  width: 100%;
+  border-radius: 18px;
+  max-width: 530px;
+  width: 94%;
   max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-hover);
-  border: 1px solid var(--border-subtle);
+  box-shadow: 0 24px 64px -12px rgba(11, 31, 51, 0.38), 0 0 0 1px rgba(198, 161, 91, 0.22);
+  border: 1px solid rgba(198, 161, 91, 0.25);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.modal-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border-subtle);
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header-wrapper {
+  padding: 22px 24px 18px;
+  background: linear-gradient(180deg, #FAFCFE 0%, #F1F5F9 100%);
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.modal-header-content {
+  flex: 1;
+}
+
+.modal-brand-badge {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.modal-header h3 {
-  font-size: 1.25rem;
-  color: var(--color-navy);
+.modal-crest {
+  width: 38px;
+  height: 38px;
+  background: var(--color-navy);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(11, 31, 51, 0.15);
+}
+
+.modal-doctor-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
   margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.2;
+}
+
+.modal-subtitle {
+  margin: 3px 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.modal-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.modal-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(11, 31, 51, 0.05);
+  color: var(--color-navy);
+  border: 1px solid rgba(11, 31, 51, 0.08);
+}
+
+.modal-trust-pill i {
+  color: var(--color-gold);
+  font-size: 0.75rem;
 }
 
 .modal-close-btn {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #64748B;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  padding: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.modal-close-btn:hover {
+  background: var(--color-navy);
+  color: #FFFFFF;
+  border-color: var(--color-navy);
+  transform: rotate(90deg);
 }
 
 .modal-body {
-  padding: 24px;
+  padding: 22px 24px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+  flex: 1;
 }
 
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 999px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ---------------- Universal Luxury Form Controls ---------------- */
 .form-group {
   margin-bottom: 16px;
 }
 
 .form-label {
-  display: block;
-  font-size: 0.885rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-navy);
   margin-bottom: 6px;
+  letter-spacing: 0.01em;
 }
 
-.form-input, .form-select, .form-textarea {
+.form-label i {
+  color: var(--color-navy);
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.required-star {
+  color: #DC2626;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.optional-label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #64748B;
+  margin-left: 4px;
+}
+
+.form-control,
+.form-input,
+.form-select,
+.form-textarea {
+  display: block;
   width: 100%;
-  padding: 11px 14px;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  color: var(--text-body);
-  background: #ffffff;
-  transition: border-color var(--transition);
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px to prevent iOS Safari auto-zoom */
+  color: #0F172A;
+  background-color: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 10px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-  outline: none;
+.form-control:hover,
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover {
+  border-color: #94A3B8;
+}
+
+.form-control:focus,
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  color: #0F172A;
+  background-color: #FFFFFF;
   border-color: var(--color-navy);
+  outline: 0;
+  box-shadow: 0 0 0 3.5px rgba(11, 31, 51, 0.12);
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr;
+.form-control::placeholder,
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #94A3B8;
+  font-size: 0.925rem;
+}
+
+/* Phone input with +91 prefix badge */
+.input-phone-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  background: #F1F5F9;
+  border: 1.5px solid #CBD5E1;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #334155;
+  user-select: none;
+}
+
+.input-phone-group .form-control {
+  border-radius: 0 10px 10px 0;
+}
+
+.input-phone-group:focus-within .phone-prefix {
+  border-color: var(--color-navy);
+  background: #E2E8F0;
+  color: var(--color-navy);
+}
+
+/* Custom Select Dropdown Arrow */
+.form-select, select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230B1F33' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+  padding-right: 42px;
+  cursor: pointer;
+}
+
+/* Textarea Clean Styling */
+.form-textarea, textarea.form-control {
+  min-height: 76px;
+  resize: vertical;
+}
+
+/* Helper Hints & Badges */
+.field-hint {
+  display: block;
+  font-size: 0.775rem;
+  color: #64748B;
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.field-clinic-hours {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.775rem;
+  color: #0E7490;
+  background: rgba(14, 116, 144, 0.08);
+  border: 1px solid rgba(14, 116, 144, 0.22);
+  border-radius: 6px;
+  padding: 5px 10px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.field-clinic-hours i {
+  color: #0E7490;
+}
+
+/* Consent Card */
+.consent-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin: 18px 0;
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.825rem;
+  line-height: 1.45;
+  color: #334155;
+  margin: 0;
+}
+
+.consent-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-navy);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Primary Modal Submit Button */
+.btn-modal-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0B1F33 0%, #163250 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid #0B1F33;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(11, 31, 51, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-modal-submit:hover {
+  background: linear-gradient(135deg, #163250 0%, #0B1F33 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(11, 31, 51, 0.28);
+}
+
+.btn-modal-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(11, 31, 51, 0.2);
+}
+
+.btn-modal-submit i {
+  color: var(--color-gold);
+}
+
+/* Urgent Care Note */
+.modal-urgent-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #E2E8F0;
+  font-size: 0.8125rem;
+  color: #64748B;
+  text-align: center;
+}
+
+.urgent-phone-link {
+  color: #B91C1C;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.urgent-wa-link {
+  color: #0D9488;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-left: 3px;
+}
+
+/* Success Card */
+.modal-success-card {
+  display: flex;
+  align-items: flex-start;
   gap: 14px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
 }
 
-@media (min-width: 540px) {
-  .form-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.success-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #22C55E;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.success-content strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #166534;
+  margin-bottom: 4px;
+}
+
+.success-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #14532D;
+  line-height: 1.5;
 }
 
 .form-alert-success {
@@ -1516,20 +1934,51 @@ p:last-child {
   color: #94a3b8;
 }
 
+.footer-nav,
 .footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.footer-links a {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  transition: color var(--transition);
+.footer-nav li,
+.footer-links li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+.footer-nav a,
+.footer-links a {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--transition), transform var(--transition);
+}
+
+.footer-nav a:hover,
 .footer-links a:hover {
   color: #ffffff;
+  transform: translateX(3px);
+}
+
+.clinic-map-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  .clinic-map-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+  }
 }
 
 .footer-contact-item {
@@ -2593,7 +3042,7 @@ p:last-child {
   color: var(--color-gold);
 }
 
-/* Mobile & Tablet responsiveness for topbar */
+/* Mobile & Tablet responsiveness for topbar & responsive shell */
 @media (max-width: 992px) {
   .emergency-bar-inner {
     flex-direction: column;
@@ -2605,6 +3054,7 @@ p:last-child {
   .emergency-call-btn {
     width: 100%;
     justify-content: center;
+    min-height: 44px;
   }
   .clinical-strip-inner {
     flex-direction: column;
@@ -2613,6 +3063,64 @@ p:last-child {
   }
   .clinical-strip-right {
     gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .emergency-guidance-bar {
+    padding: 8px 0;
+  }
+  .emergency-text-group {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .emergency-icon-badge {
+    margin-top: 2px;
+  }
+  .emergency-message {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+  .facility-capsule-badge {
+    border-radius: var(--radius-sm);
+    white-space: normal;
+    line-height: 1.35;
+    font-size: 0.725rem;
+  }
+  .clinical-strip-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .clinical-strip-item {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    height: auto;
+    min-height: 72px;
+    padding: 10px 0;
+  }
+  .brand-crest {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+  .brand-name {
+    font-size: 1.1rem;
+  }
+  .brand-sub {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+  .mobile-toggle {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -3081,77 +3589,122 @@ p:last-child {
 </main>
 
 
-  <!-- Simplified Appointment Booking Modal (Brief Section 24 & Spec Section 7) -->
+  <!-- Refined Clinical Appointment Booking Modal -->
   <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
     <div class="modal-dialog">
-      <div class="modal-header">
-        <h3 id="modalHeading" style="margin:0; font-size:1.35rem; color:var(--color-navy);">Book an Appointment</h3>
+      <!-- Modal Header -->
+      <div class="modal-header-wrapper">
+        <div class="modal-header-content">
+          <div class="modal-brand-badge">
+            <span class="modal-crest">SC</span>
+            <div class="modal-doctor-meta">
+              <h3 id="modalHeading" class="modal-title">Request a Consultation</h3>
+              <p class="modal-subtitle">Dr. Saurabh Chipde • Apollo Rajshree Hospital, Indore</p>
+            </div>
+          </div>
+          <div class="modal-trust-strip">
+            <span class="modal-trust-pill"><i class="fa fa-lock" aria-hidden="true"></i> Strictly Confidential</span>
+            <span class="modal-trust-pill"><i class="fa fa-clock-o" aria-hidden="true"></i> Mon–Sat 10 AM–6 PM</span>
+          </div>
+        </div>
         <button type="button" class="modal-close-btn" aria-label="Close dialog">&times;</button>
       </div>
 
+      <!-- Modal Body -->
       <div class="modal-body">
-        <div id="bookingSuccessAlert" style="display:none; background:#EBFBEE; border:1px solid #B2F2BB; border-radius:var(--radius-sm); padding:16px; margin-bottom:18px; color:#2B8A3E; font-size:0.95rem;">
-          <strong style="display:block; margin-bottom:4px; font-size:1rem;"><i class="fa fa-check-circle"></i> Request Received!</strong>
-          Thank you. Our clinic team will contact you shortly to confirm your consultation slot.
+        <div id="bookingSuccessAlert" class="modal-success-card" style="display:none;" role="status">
+          <div class="success-icon-badge"><i class="fa fa-check"></i></div>
+          <div class="success-content">
+            <strong>Consultation Request Received!</strong>
+            <p>Thank you. Our clinic coordinator will contact you promptly via Call or WhatsApp to confirm your preferred appointment slot.</p>
+          </div>
         </div>
 
         <form id="appointmentForm" class="modal-form" novalidate>
+          <!-- Full Name -->
           <div class="form-group">
-            <label for="bookName" class="form-label">Full Name *</label>
+            <label for="bookName" class="form-label">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i> Full Name <span class="required-star">*</span>
+            </label>
             <input type="text" id="bookName" name="name" class="form-control" placeholder="e.g. Rajesh Sharma" required autocomplete="name">
           </div>
 
+          <!-- Mobile Number -->
           <div class="form-group">
-            <label for="bookPhone" class="form-label">Mobile Number *</label>
-            <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required autocomplete="tel">
+            <label for="bookPhone" class="form-label">
+              <i class="fa fa-phone" aria-hidden="true"></i> Mobile Number <span class="required-star">*</span>
+            </label>
+            <div class="input-phone-group">
+              <span class="phone-prefix">+91</span>
+              <input type="tel" id="bookPhone" name="phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required autocomplete="tel">
+            </div>
+            <small class="field-hint">We will call or WhatsApp you to confirm slot availability.</small>
           </div>
 
+          <!-- Reason for Consultation -->
           <div class="form-group">
-            <label for="bookingReason" class="form-label">Reason for Consultation *</label>
-            <select id="bookingReason" name="reason" class="form-select" required>
-              <option value="" disabled selected>Select concern</option>
-              <option value="Prostate Care & TURP">Enlarged Prostate (BPH) / TURP</option>
+            <label for="bookingReason" class="form-label">
+              <i class="fa fa-stethoscope" aria-hidden="true"></i> Specialty / Clinical Concern <span class="required-star">*</span>
+            </label>
+            <select id="bookingReason" name="reason" class="form-control form-select" required>
+              <option value="" disabled selected>Select your clinical concern</option>
+              <option value="Prostate Care & TURP">Enlarged Prostate (BPH) / TURP Surgery</option>
               <option value="Rezum Water Vapor Therapy">Rezūm™ Water Vapor Steam Therapy</option>
-              <option value="iTind or UroLift">iTind / UroLift Minimally Invasive Procedure</option>
-              <option value="Kidney Stones / Laser Lithotripsy">Kidney Stones / Laser Lithotripsy (RIRS)</option>
-              <option value="Kidney Transplantation">Kidney Transplant Evaluation / Surgery</option>
-              <option value="Robotic Urology Surgery">Robotic Urology Surgery (Robourology)</option>
-              <option value="AV Fistula & Dialysis Access">AV Fistula Creation for Dialysis</option>
-              <option value="Hematuria / Blood in Urine">Blood in Urine (Hematuria) / Cystoscopy</option>
-              <option value="General Urology / UTIs">UTIs & General Urology Consultation</option>
+              <option value="iTind or UroLift">iTind / UroLift Minimally Invasive System</option>
+              <option value="Kidney Stones / Laser Lithotripsy">Kidney Stones / Laser Lithotripsy (RIRS / PCNL)</option>
+              <option value="Kidney Transplantation">Kidney Transplant Evaluation & Donor Workup</option>
+              <option value="Robotic Urology Surgery">Robotic Urological Surgery (Robourology / Oncology)</option>
+              <option value="AV Fistula & Dialysis Access">AV Fistula Creation & Vascular Access for Dialysis</option>
+              <option value="Hematuria / Blood in Urine">Blood in Urine (Hematuria) / Bladder Diagnostic Check</option>
+              <option value="Male Sexual Health & Andrology">Male Sexual Health / ED / Andrology Consultation</option>
+              <option value="General Urology / Second Opinion">General Urology / Detailed Second Opinion</option>
             </select>
           </div>
 
-          <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-            <div class="form-group">
-              <label for="bookDate" class="form-label">Preferred Date</label>
-              <input type="date" id="bookDate" name="date" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="bookTime" class="form-label">Preferred Time</label>
-              <select id="bookTime" name="time" class="form-select">
-                <option value="Morning">Morning (10:00 AM – 1:00 PM)</option>
-                <option value="Afternoon">Afternoon (1:00 PM – 4:00 PM)</option>
-                <option value="Evening">Evening (4:00 PM – 7:00 PM)</option>
-              </select>
-            </div>
-          </div>
-
+          <!-- Preferred Date (Preferred Time removed as requested) -->
           <div class="form-group">
-            <label for="bookMessage" class="form-label">Optional Message or Note</label>
-            <textarea id="bookMessage" name="message" class="form-control" rows="2" placeholder="Briefly describe any specific question or previous reports..."></textarea>
+            <label for="bookDate" class="form-label">
+              <i class="fa fa-calendar-o" aria-hidden="true"></i> Preferred Consultation Date <span class="optional-label">(Optional)</span>
+            </label>
+            <input type="date" id="bookDate" name="date" class="form-control">
+            <div class="field-clinic-hours">
+              <i class="fa fa-clock-o" aria-hidden="true"></i> Regular OPD Timings: Monday – Saturday, 10:00 AM – 06:00 PM
+            </div>
           </div>
 
-          <div class="form-group" style="display:flex; align-items:flex-start; gap:8px; margin: 16px 0;">
-            <input type="checkbox" id="bookConsent" name="consent" checked required style="margin-top:4px;">
-            <label for="bookConsent" style="font-size:0.825rem; color:var(--text-muted); line-height:1.4;">
-              I consent to being contacted by Dr. Chipde's clinic team via Call or WhatsApp regarding this appointment request.
+          <!-- Optional Message / Note -->
+          <div class="form-group">
+            <label for="bookMessage" class="form-label">
+              <i class="fa fa-file-text-o" aria-hidden="true"></i> Specific Symptoms or Notes <span class="optional-label">(Optional)</span>
+            </label>
+            <textarea id="bookMessage" name="message" class="form-control form-textarea" rows="2" placeholder="Briefly share any symptoms, duration, or previous ultrasound/lab reports..."></textarea>
+          </div>
+
+          <!-- Consent Card (Affirmative Opt-in per DPDP Act 2023) -->
+          <div class="consent-card">
+            <label class="consent-label" for="bookConsent">
+              <input type="checkbox" id="bookConsent" name="consent" class="consent-checkbox" required>
+              <span class="consent-text">
+                I consent to Dr. Saurabh Chipde's clinical coordination desk contacting me via Call or WhatsApp regarding this appointment request. <strong>Patient privacy is strictly safeguarded.</strong>
+              </span>
             </label>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; font-size:1rem;">
-            Request Appointment
+          <!-- Privacy Notice Microcopy -->
+          <p class="form-privacy-notice" style="font-size:0.75rem; color:#64748B; margin:8px 0 12px; line-height:1.45; text-align:center;">
+            <i class="fa fa-lock" aria-hidden="true" style="color:#059669;"></i> By submitting, you agree to our <a href="privacy-policy.html" style="color:var(--color-navy); text-decoration:underline;">Privacy Policy</a> &amp; <a href="appointment-policy.html" style="color:var(--color-navy); text-decoration:underline;">Appointment Policy</a>. Your details are never shared with advertisers.
+          </p>
+
+          <!-- Submit CTA -->
+          <button type="submit" class="btn-modal-submit" id="bookSubmitBtn">
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Confirm Consultation Request
           </button>
+
+          <!-- Urgent Assistance Notice -->
+          <div class="modal-urgent-note">
+            <span><i class="fa fa-ambulance" aria-hidden="true"></i> Urgent symptoms? <a href="tel:+917869392498" class="urgent-phone-link">Call Emergency: +91 78693 92498</a></span>
+            <span>or <a href="https://wa.me/917869392498" target="_blank" rel="noopener noreferrer" class="urgent-wa-link"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Directly on WhatsApp</a></span>
+          </div>
         </form>
       </div>
     </div>
@@ -3193,7 +3746,7 @@ p:last-child {
         <a href="https://www.linkedin.com/in/dr-saurabh-chipde-639a042b/" target="_blank" rel="noopener noreferrer" class="utility-social-icon" data-tooltip="LinkedIn" aria-label="Dr. Saurabh Chipde on LinkedIn">
           <i class="fa fa-linkedin" aria-hidden="true"></i>
         </a>
-        <a href="https://maps.app.goo.gl/HjpdFkirMJnVzg6C9" target="_blank" rel="noopener noreferrer" class="utility-social-icon" data-tooltip="Google Business Profile" aria-label="Dr. Saurabh Chipde Google Business Profile & Clinic Location">
+        <a href="https://share.google/EfvKhwt6lKf6hsZgl" target="_blank" rel="noopener noreferrer" class="utility-social-icon" data-tooltip="Google Business Profile" aria-label="Dr. Saurabh Chipde Google Business Profile">
           <i class="fa fa-google" aria-hidden="true"></i>
         </a>
         <a href="https://www.youtube.com/@DrSaurabhChipde" target="_blank" rel="noopener noreferrer" class="utility-social-icon" data-tooltip="YouTube" aria-label="Dr. Saurabh Chipde on YouTube">
@@ -3217,7 +3770,7 @@ p:last-child {
             <strong style="color:var(--color-gold);">Recipient of Dr. Velidandla Hanumantha Rao Gold Medal</strong>
           </p>
           <p style="color:var(--text-light); font-size:0.825rem; margin-bottom:12px; line-height:1.4;">
-            <strong style="color:#ffffff;">Registration:</strong> MP Medical Council (Reg. No. MPMC-XXXXX) • <strong>20+ Years Clinical Experience</strong>
+            <strong style="color:#ffffff;">Registration:</strong> MP Medical Council [PENDING REVIEW: Registration Number] • <strong>20+ Years Clinical Experience</strong>
           </p>
           <p style="color:var(--text-light); font-size:0.85rem; line-height:1.5;">
             Senior Consultant Urologist, Robotic & Renal Transplant Surgeon at Apollo Rajshree Hospital, Indore.
@@ -3226,24 +3779,25 @@ p:last-child {
 
         <!-- Column 2: Treatments & Patient Guides -->
         <div class="footer-col">
-          <h4 class="footer-heading">Treatments & Guides</h4>
-          <ul class="footer-nav">
-            <li><a href="prostate-care.html">Prostate Care & TURP</a></li>
-            <li><a href="rezum-indore.html">Rezūm™ Water Vapor Therapy</a></li>
-            <li><a href="kidney-stone-treatment.html">Kidney Stones & Laser Lithotripsy</a></li>
-            <li><a href="kidney-transplant.html">Kidney Transplantation</a></li>
-            <li><a href="robotic-urology-surgery.html">Robotic Urology Surgery</a></li>
-            <li><a href="sexual-health.html">Men's Health & Sexual Wellness</a></li>
-            <li><a href="other-urology-treatments.html#av-fistula">AV Fistula & Dialysis Access</a></li>
-            <li><a href="rezum-cost-indore.html">Rezūm Cost & Insurance Guide</a></li>
+          <h4 class="footer-heading" style="color:#ffffff; margin-bottom:16px;">Treatments &amp; Guides</h4>
+          <ul class="footer-nav footer-links" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
+            <li style="list-style:none; margin:0; padding:0;"><a href="prostate-care.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Prostate Care &amp; TURP</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="rezum-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Rezūm™ Water Vapor Therapy</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="kidney-stone-treatment.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Kidney Stones &amp; Laser Lithotripsy</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="kidney-transplant.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Kidney Transplantation</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="robotic-urology-surgery.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Robotic Urology Surgery</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="sexual-health.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Men's Health &amp; Sexual Wellness</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="other-urology-treatments.html#av-fistula" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">AV Fistula &amp; Dialysis Access</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="rezum-cost-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Rezūm Cost &amp; Insurance Guide</a></li>
           </ul>
         </div>
 
-        <!-- Column 3: Contact & Google Review -->
+        <!-- Column 3: Consultation Venue & OPD -->
         <div class="footer-col">
-          <h4 class="footer-heading">Clinic & Hospital</h4>
+          <h4 class="footer-heading">Consultation Venue &amp; OPD</h4>
           <p style="color:var(--text-light); font-size:0.9rem; line-height:1.6; margin-bottom:10px;">
             <strong>Apollo Rajshree Hospital</strong><br>
+            <span style="font-size:0.825rem; color:var(--color-gold);">(OPD Practice Desk)</span><br>
             Sector-D, Scheme No. 74C, Vijay Nagar,<br>
             Indore, Madhya Pradesh 452010
           </p>
@@ -3254,12 +3808,11 @@ p:last-child {
             <strong>WhatsApp:</strong> <a href="https://wa.me/917869392498?text=Hello%20Dr.%20Chipde%27s%20clinic" target="_blank" rel="noopener" style="color:var(--color-gold);">Message Clinic</a>
           </p>
           <p style="color:var(--text-light); font-size:0.825rem; line-height:1.5; margin-bottom:8px;">
-            <strong>OPD Schedule:</strong> Mon–Sat 12:00 PM – 3:00 PM | Sun 10:00 AM – 12:00 PM<br>
-            <strong>Consultation Fee:</strong> ₹900 (Hospital OPD Desk)
+            <strong>OPD Schedule:</strong> Mon–Sat 12:00 PM – 3:00 PM | Sun 10:00 AM – 12:00 PM
           </p>
           <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:6px;">
-            <a href="https://maps.app.goo.gl/HjpdFkirMJnVzg6C9" target="_blank" rel="noopener" style="color:var(--color-gold); display:inline-flex; align-items:center; gap:6px;">
-              <i class="fa fa-map-marker"></i> Google Maps & Reviews
+            <a href="https://share.google/EfvKhwt6lKf6hsZgl" target="_blank" rel="noopener noreferrer" style="color:var(--color-gold); display:inline-flex; align-items:center; gap:6px;">
+              <i class="fa fa-google"></i> Dr. Chipde on Google Business Profile &amp; Reviews
             </a>
           </p>
           <p style="font-size:0.85rem; color:var(--text-light); margin:0;">
@@ -3271,10 +3824,10 @@ p:last-child {
 
         <!-- Column 4: Verified Social & Patient Trust -->
         <div class="footer-col">
-          <h4 class="footer-heading">Patient Trust & Connect</h4>
+          <h4 class="footer-heading">Patient Trust &amp; Connect</h4>
           <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:6px 12px; border-radius:var(--radius-sm); margin-bottom:16px;">
             <span style="color:#F59E0B; font-weight:700; font-size:0.95rem;">★ 5.0 Rating</span>
-            <span style="color:var(--text-light); font-size:0.8rem;">· Google Reviews (5.0★) & Apollo 24/7 (92%)</span>
+            <span style="color:var(--text-light); font-size:0.8rem;">· Google Reviews (5.0★) &amp; Apollo 24/7 (92%)</span>
           </div>
           <p style="color:var(--text-light); font-size:0.875rem; line-height:1.5; margin-bottom:14px;">
             Follow Dr. Saurabh Chipde for patient health awareness, clinical insights, and urological education.
@@ -3289,7 +3842,7 @@ p:last-child {
             <a href="https://www.linkedin.com/in/dr-saurabh-chipde-639a042b/" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:1.2rem; background:rgba(255,255,255,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s;" aria-label="Dr. Saurabh Chipde LinkedIn Profile">
               <i class="fa fa-linkedin"></i>
             </a>
-            <a href="https://maps.app.goo.gl/HjpdFkirMJnVzg6C9" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:1.2rem; background:rgba(255,255,255,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s;" aria-label="Dr. Saurabh Chipde Google Business Profile">
+            <a href="https://share.google/EfvKhwt6lKf6hsZgl" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:1.2rem; background:rgba(255,255,255,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s;" aria-label="Dr. Saurabh Chipde Google Business Profile">
               <i class="fa fa-google"></i>
             </a>
             <a href="https://www.youtube.com/@DrSaurabhChipde" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:1.2rem; background:rgba(255,255,255,0.08); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:background 0.2s;" aria-label="Dr. Saurabh Chipde YouTube Channel">
@@ -3314,10 +3867,12 @@ p:last-child {
         <p style="color:var(--text-light); font-size:0.8rem; margin:0;">
           &copy; 2026 Dr. Saurabh Chipde. All rights reserved. Apollo Rajshree Hospital, Indore.
         </p>
-        <div style="display:flex; gap:16px; font-size:0.8rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:16px; font-size:0.8rem;">
           <a href="privacy-policy.html" style="color:var(--text-light);">Privacy Policy</a>
           <a href="terms.html" style="color:var(--text-light);">Terms of Use</a>
           <a href="medical-disclaimer.html" style="color:var(--text-light);">Medical Disclaimer</a>
+          <a href="appointment-policy.html" style="color:var(--text-light);">Appointment Policy</a>
+          <a href="cookie-policy.html" style="color:var(--text-light);">Cookie Notice</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 /**
  * Dr. Saurabh Chipde - Analytics & Conversion Tracking Module
+ * Privacy-Hardened: Zero PHI/PII Parameter Leakage (DPDP Act 2023 Compliant)
  */
 
 window.chipdeTrack = function(eventName, params = {}) {
@@ -7,31 +8,36 @@ window.chipdeTrack = function(eventName, params = {}) {
     if (typeof gtag === 'function') {
       gtag('event', eventName, params);
     }
-    console.log('[Analytics Event]:', eventName, params);
   } catch (err) {
-    console.error('Tracking error:', err);
+    // Non-blocking fail-safe
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // WhatsApp links tracking
+  // WhatsApp links tracking - STRIP query parameters to strictly prevent leaking PHI/PII (name, phone, medical concern)
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     link.addEventListener('click', () => {
-      window.chipdeTrack('whatsapp_click', { url: link.href });
+      window.chipdeTrack('whatsapp_click', {
+        destination: 'clinic_whatsapp',
+        page: window.location.pathname
+      });
     });
   });
 
-  // Telephone call tracking
+  // Telephone call tracking - Generic destination identifier, no personal data
   document.querySelectorAll('a[href^="tel:"]').forEach(link => {
     link.addEventListener('click', () => {
-      window.chipdeTrack('call_click', { phone: link.href });
+      window.chipdeTrack('call_click', {
+        destination: 'clinic_opd_desk',
+        page: window.location.pathname
+      });
     });
   });
 
-  // Instagram links tracking
+  // Social media interaction tracking
   document.querySelectorAll('a[href*="instagram.com"]').forEach(link => {
     link.addEventListener('click', () => {
-      window.chipdeTrack('instagram_click', { url: link.href });
+      window.chipdeTrack('social_click', { platform: 'instagram' });
     });
   });
 
