@@ -169,7 +169,7 @@
   }
   </script>
 
-  <!-- Bulletproof Inline Styling (Ensures 100% styling even on flat GitHub Pages upload) -->
+  <!-- Bulletproof Inline Styling (Ensures complete styling even on flat GitHub Pages upload) -->
   <style id="bulletproof-css">
 /* ==========================================================================
    DR. SAURABH CHIPDE — REFINED MEDICAL BRAND DESIGN SYSTEM
@@ -2732,12 +2732,50 @@ p:last-child {
   transform: translateY(-50%) translateX(0);
 }
 
-/* Mobile & Tablet Responsive Constraint: Hidden <= 1024px */
+/* Responsive Floating Utility Sidebar for Tablet & Mobile (Shows social presence rail on the right) */
 @media (max-width: 1024px) {
   .floating-utility-sidebar {
+    display: flex !important;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 6px;
+    z-index: 990;
+  }
+
+  /* On mobile and tablet, hide floating Book pill because bottom sticky dock provides primary thumb-accessible Book CTA */
+  .floating-section-book {
+    display: none !important;
+  }
+
+  /* Compact, sleek social presence rail docked on the right */
+  .floating-social-rail {
+    width: 38px;
+    padding: 5px 3px;
+    border-radius: 8px 0 0 8px;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: -2px 3px 12px rgba(11, 31, 51, 0.16);
+    border: 1px solid var(--border-subtle);
+    border-right: none;
+  }
+
+  .utility-social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+
+  /* Suppress desktop tooltip balloons on touch devices */
+  .utility-social-icon[data-tooltip]::before,
+  .utility-social-icon[data-tooltip]::after {
     display: none !important;
   }
 }
+
 
 /* ---------------- Mobile Drawer Accordions (CR Section 8 & 13) ---------------- */
 .mobile-accordion-group {
@@ -3009,22 +3047,48 @@ p:last-child {
 
 /* Mobile & Tablet responsiveness for topbar & responsive shell */
 @media (max-width: 992px) {
+  .emergency-guidance-bar {
+    padding: 7px 0;
+  }
   .emergency-bar-inner {
     flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .emergency-text-group {
+    flex: 0 0 auto !important;
+    width: 100%;
     align-items: flex-start;
+    gap: 8px;
+  }
+  .emergency-icon-badge {
+    width: 26px;
+    height: 26px;
+    font-size: 0.8rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .emergency-message {
+    font-size: 0.775rem;
+    line-height: 1.35;
   }
   .emergency-cta-group {
     width: 100%;
+    margin-top: 0;
   }
   .emergency-call-btn {
     width: 100%;
     justify-content: center;
-    min-height: 44px;
+    padding: 5px 14px;
+    font-size: 0.775rem;
+    min-height: 32px;
+    border-radius: 999px;
   }
   .clinical-strip-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 5px;
   }
   .clinical-strip-right {
     gap: 10px;
@@ -3033,18 +3097,28 @@ p:last-child {
 
 @media (max-width: 768px) {
   .emergency-guidance-bar {
-    padding: 8px 0;
+    padding: 6px 0;
+  }
+  .emergency-bar-inner {
+    gap: 5px;
   }
   .emergency-text-group {
-    align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
   .emergency-icon-badge {
-    margin-top: 2px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    margin-top: 1px;
   }
   .emergency-message {
-    font-size: 0.8125rem;
-    line-height: 1.4;
+    font-size: 0.75rem;
+    line-height: 1.32;
+  }
+  .emergency-call-btn {
+    min-height: 30px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
   }
   .facility-capsule-badge {
     border-radius: var(--radius-sm);
@@ -3147,19 +3221,19 @@ p:last-child {
                     Rezūm™ Water Vapor Therapy
                     <span>Minimally invasive steam therapy in Indore</span>
                   </a>
-                  <a href="prostate-care.html#modalities" class="category-link">
-                    UroLift® System
-                    <span>Prostatic urethral lift implants</span>
-                  </a>
-                  <a href="prostate-care.html#modalities" class="category-link">
+                  <a href="itind-indore.html" class="category-link">
                     iTind™ Procedure
                     <span>Temporary nitinol device remodeling</span>
                   </a>
-                  <a href="prostate-care.html#modalities" class="category-link">
+                  <a href="prostate-care.html#urolift" class="category-link">
+                    UroLift® System
+                    <span>Prostatic urethral lift implants</span>
+                  </a>
+                  <a href="prostate-care.html#holep" class="category-link">
                     HoLEP
                     <span>Holmium laser prostate enucleation</span>
                   </a>
-                  <a href="prostate-care.html#modalities" class="category-link">
+                  <a href="prostate-care.html#turp" class="category-link">
                     TURP
                     <span>Transurethral resection of the prostate</span>
                   </a>
@@ -3311,7 +3385,7 @@ p:last-child {
                   </a>
                   <a href="rezum-cost-indore.html" class="category-link">
                     Patient Educational Guides
-                    <span>Procedure costs, guides & recovery</span>
+                    <span>Procedure guides, recovery & eligibility</span>
                   </a>
                 </div>
               </div>
@@ -3365,9 +3439,10 @@ p:last-child {
             <a href="prostate-care.html#urinary-symptoms" class="mobile-panel-link">Urinary Problems</a>
             <div class="mobile-accordion-subtitle">Treatments & Procedures</div>
             <a href="rezum-indore.html" class="mobile-panel-link">Rezūm™ Water Vapor Therapy</a>
-            <a href="prostate-care.html#modalities" class="mobile-panel-link">UroLift® System</a>
-            <a href="prostate-care.html#modalities" class="mobile-panel-link">iTind™ Procedure</a>
-            <a href="prostate-care.html#modalities" class="mobile-panel-link">HoLEP & TURP</a>
+            <a href="itind-indore.html" class="mobile-panel-link">iTind™ Procedure (Nitinol Device)</a>
+            <a href="prostate-care.html#urolift" class="mobile-panel-link">UroLift® System</a>
+            <a href="prostate-care.html#holep" class="mobile-panel-link">HoLEP Laser Enucleation</a>
+            <a href="prostate-care.html#turp" class="mobile-panel-link">TURP Surgical Care</a>
             <a href="prostate-care.html" class="mobile-panel-cta">View All Prostate Care →</a>
           </div>
         </div>
@@ -3425,7 +3500,7 @@ p:last-child {
             <a href="other-urology-treatments.html#urinary-problems" class="mobile-panel-link">Urinary Problems</a>
             <a href="other-urology-treatments.html" class="mobile-panel-link">Other Urology Conditions</a>
             <div class="mobile-accordion-subtitle">Patient Educational Guides</div>
-            <a href="rezum-cost-indore.html" class="mobile-panel-link">Rezūm Cost & Insurance</a>
+            <a href="rezum-cost-indore.html" class="mobile-panel-link">Rezūm Patient Guide</a>
             <a href="kidney-stone-recovery-rirs.html" class="mobile-panel-link">Kidney Stone Laser Recovery</a>
             <a href="robotic-vs-open-surgery.html" class="mobile-panel-link">Robotic vs Open Surgery</a>
             <a href="when-to-see-urologist-prostate.html" class="mobile-panel-link">When to See a Urologist</a>
@@ -3453,22 +3528,25 @@ p:last-child {
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
-      <div style="max-width:820px;">
+      <div style="max-width:840px;">
         <div class="eyebrow">UROLOGICAL CLINICAL EXCELLENCE</div>
-        <h1 class="hero-headline">Care for Enlarged Prostate (BPH) & TURP</h1>
+        <h1 class="hero-headline">Care for Enlarged Prostate (BPH)</h1>
         <div id="bph"></div>
         <div class="hero-subheading">
-          Evidence-based diagnosis, medical optimization, and advanced minimally invasive procedures tailored to your anatomy and lifestyle.
+          Personalized diagnosis and modern bladder-outlet options — from gentle, non-cutting day-care procedures (Rezūm™, iTind™, UroLift®) to advanced laser enucleation (HoLEP) and endoscopic surgery (TURP).
         </div>
         <p class="hero-supporting">
-          Benign Prostatic Hyperplasia (BPH) is a natural, non-cancerous enlargement of the prostate gland that affects the majority of men as they age. Dr. Saurabh Chipde offers comprehensive prostate evaluations and modern bladder-outlet treatments at Apollo Rajshree Hospital, Indore.
+          Benign Prostatic Hyperplasia (BPH) is a common, non-cancerous enlargement of the prostate gland that affects most men as they grow older. Dr. Saurabh Chipde offers comprehensive prostate evaluations and personalized treatments at Apollo Rajshree Hospital, Indore, ensuring patients receive the right treatment suited to their gland size, urinary symptoms, and lifestyle priorities.
         </p>
         <div class="hero-ctas">
           <button type="button" class="btn btn-primary btn-lg js-book-btn" data-source="prostate_hero">
             <i class="fa fa-calendar-check-o"></i> Book an Appointment
           </button>
+          <a href="itind-indore.html" class="btn btn-outline btn-lg" style="margin-left:8px;">
+            iTind™ Procedure Guide <i class="fa fa-arrow-right"></i>
+          </a>
           <a href="rezum-indore.html" class="btn btn-outline btn-lg">
-            Explore Rezūm™ Steam Therapy <i class="fa fa-arrow-right"></i>
+            Rezūm™ Steam Therapy <i class="fa fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -3482,7 +3560,7 @@ p:last-child {
         <span class="section-tag">Recognizing Symptoms</span>
         <h2>Common Signs of Prostate Enlargement</h2>
         <p class="section-desc">
-          Prostate enlargement compresses the urethra, leading to lower urinary tract symptoms (LUTS) that gradually diminish daily comfort and restorative sleep.
+          When the prostate gland enlarges, it gently pinches the urethra, leading to noticeable changes in daily urination and restful sleep.
         </p>
       </div>
 
@@ -3490,26 +3568,26 @@ p:last-child {
         <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:24px; box-shadow:var(--shadow-subtle);">
           <div style="color:var(--color-navy); font-size:1.25rem; margin-bottom:10px;"><i class="fa fa-clock-o"></i></div>
           <h4 style="color:var(--color-navy); margin-bottom:8px;">Frequent Urination (Nocturia)</h4>
-          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Waking up multiple times each night to pass urine, disrupting restorative sleep.</p>
+          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Waking up two or more times each night to pass urine, disrupting your normal sleep cycle.</p>
         </div>
 
         <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:24px; box-shadow:var(--shadow-subtle);">
           <div style="color:var(--color-navy); font-size:1.25rem; margin-bottom:10px;"><i class="fa fa-tint"></i></div>
           <h4 style="color:var(--color-navy); margin-bottom:8px;">Weak or Hesitant Stream</h4>
-          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Delay in initiating urination, reduced flow force, or urine dribbling at the end of the stream.</p>
+          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Waiting several seconds for urine to begin, reduced flow force, or dribbling after finishing.</p>
         </div>
 
         <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:24px; box-shadow:var(--shadow-subtle);">
           <div style="color:var(--color-navy); font-size:1.25rem; margin-bottom:10px;"><i class="fa fa-exclamation-circle"></i></div>
           <h4 style="color:var(--color-navy); margin-bottom:8px;">Urgency & Incomplete Emptying</h4>
           <div id="urinary-symptoms"></div>
-          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">A sudden compelling urge to urinate, or a persistent sensation that the bladder never empties fully.</p>
+          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Sudden strong urge to urinate that is difficult to postpone, or feeling that the bladder never empties fully.</p>
         </div>
 
         <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:24px; box-shadow:var(--shadow-subtle);">
           <div style="color:var(--color-navy); font-size:1.25rem; margin-bottom:10px;"><i class="fa fa-shield"></i></div>
-          <h4 style="color:var(--color-navy); margin-bottom:8px;">Urinary Retention & Infections</h4>
-          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Stagnant urine can lead to recurrent bladder infections, bladder stones, or acute urinary blockage.</p>
+          <h4 style="color:var(--color-navy); margin-bottom:8px;">Retention & Recurrent UTIs</h4>
+          <p style="font-size:0.925rem; color:var(--text-muted); line-height:1.6; margin:0;">Retained urine can lead to recurrent urinary infections, bladder stones, or sudden acute retention.</p>
         </div>
       </div>
     </div>
@@ -3519,10 +3597,10 @@ p:last-child {
   <section class="section-padding" id="modalities" style="background-color:var(--bg-white); border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);">
     <div class="container">
       <div class="text-center" style="margin-bottom:36px;">
-        <span class="section-tag">Clinical Comparison</span>
-        <h2>Prostate Treatment Modalities Compared</h2>
+        <span class="section-tag">Treatment Comparison</span>
+        <h2>Prostate Treatment Options Compared</h2>
         <p class="section-desc">
-          Understanding the differences between modern minimally invasive options and traditional surgical interventions.
+          Compare modern day-care therapies against traditional surgical procedures in simple, easy-to-understand terms.
         </p>
       </div>
 
@@ -3530,70 +3608,213 @@ p:last-child {
         <table class="comparison-table">
           <thead>
             <tr>
-              <th>Treatment Option</th>
-              <th class="highlight-col">Rezūm™ Steam</th>
-              <th>iTind Nitinol Device</th>
+              <th>Feature</th>
+              <th class="highlight-col">iTind™ Device</th>
+              <th>Rezūm™ Steam</th>
               <th>UroLift® System</th>
+              <th>HoLEP Laser</th>
               <th>Standard TURP</th>
-              <th>Medical Therapy</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Invasiveness</strong></td>
-              <td class="highlight-col"><span class="table-badge-yes"><i class="fa fa-check"></i> Minimally Invasive</span></td>
-              <td><span class="table-badge-yes"><i class="fa fa-check"></i> Minimally Invasive</span></td>
-              <td><span class="table-badge-yes"><i class="fa fa-check"></i> Minimally Invasive</span></td>
-              <td>Endoscopic Surgery</td>
-              <td>Non-Surgical (Daily Pills)</td>
+              <td><strong>How It Works</strong></td>
+              <td class="highlight-col">Temporary 5–7 day basket reshapes channel</td>
+              <td>Natural water vapor steam shrinks tissue</td>
+              <td>Permanent tiny implants hold lobes apart</td>
+              <td>Laser core enucleation for very large glands</td>
+              <td>Endoscopic surgical trimming of tissue</td>
             </tr>
             <tr>
-              <td><strong>Sexual Function Preservation</strong></td>
-              <td class="highlight-col"><span class="table-badge-yes"><i class="fa fa-check"></i> High (>95% preserved)</span></td>
-              <td><span class="table-badge-yes"><i class="fa fa-check"></i> High (>95% preserved)</span></td>
-              <td><span class="table-badge-yes"><i class="fa fa-check"></i> High preserved</span></td>
-              <td>Retrograde ejaculation likely (60–80%)</td>
-              <td>Variable (ED/decreased libido possible)</td>
+              <td><strong>Permanent Hardware?</strong></td>
+              <td class="highlight-col"><span class="table-badge-yes"><i class="fa fa-check"></i> None (Removed on Day 5–7)</span></td>
+              <td><span class="table-badge-yes"><i class="fa fa-check"></i> None (Steam naturally absorbed)</span></td>
+              <td>Yes (Permanent micro-implants remain)</td>
+              <td>None</td>
+              <td>None</td>
+            </tr>
+            <tr>
+              <td><strong>Tissue Cutting / Burning</strong></td>
+              <td class="highlight-col"><span class="table-badge-yes"><i class="fa fa-check"></i> Zero cutting or heating</span></td>
+              <td>Zero cutting (gentle thermal steam)</td>
+              <td>Zero cutting or heating</td>
+              <td>Laser surgical enucleation</td>
+              <td>Endoscopic electro-cautery trimming</td>
+            </tr>
+            <tr>
+              <td><strong>Sexual Function Protection</strong></td>
+              <td class="highlight-col"><span class="table-badge-yes"><i class="fa fa-check"></i> High (Non-Thermal)</span></td>
+              <td><span class="table-badge-yes"><i class="fa fa-check"></i> High (&gt;95% Preserved)</span></td>
+              <td><span class="table-badge-yes"><i class="fa fa-check"></i> High Preserved</span></td>
+              <td>Retrograde ejaculation common</td>
+              <td>Retrograde ejaculation common (60–80%)</td>
             </tr>
             <tr>
               <td><strong>Catheter Requirement</strong></td>
-              <td class="highlight-col">Short (typically 3–5 days)</td>
-              <td>Zero or short (0–1 day)</td>
+              <td class="highlight-col">Usually None (0 days)</td>
+              <td>Short (typically 3–5 days)</td>
               <td>Minimal (often 0–1 day)</td>
+              <td>1–2 days</td>
               <td>2–4 days continuous irrigation</td>
-              <td>None</td>
-            </tr>
-            <tr>
-              <td><strong>Recovery Profile</strong></td>
-              <td class="highlight-col">Rapid (normal routine in days)</td>
-              <td>Very rapid (routine in 1–2 days)</td>
-              <td>Very rapid</td>
-              <td>2–4 weeks restricted activity</td>
-              <td>Ongoing daily maintenance</td>
             </tr>
             <tr>
               <td><strong>Hospital Stay</strong></td>
-              <td class="highlight-col">Day-care / Outpatient</td>
-              <td>Day-care / Outpatient</td>
-              <td>Day-care</td>
+              <td class="highlight-col">Day-care (Go home same day)</td>
+              <td>Day-care (Go home same day)</td>
+              <td>Day-care (Go home same day)</td>
+              <td>1–2 Days</td>
               <td>2–3 Days</td>
-              <td>None</td>
             </tr>
             <tr>
-              <td><strong>Best Suited For</strong></td>
-              <td class="highlight-col">Men wanting rapid recovery & sexual function preservation</td>
-              <td>Sexually active men seeking catheter-free BPH relief</td>
-              <td>Lateral lobe obstruction desiring zero tissue ablation</td>
-              <td>Established clinical standard for significant obstruction</td>
-              <td>Mild-to-moderate early obstructive symptoms</td>
+              <td><strong>Ideal Patient</strong></td>
+              <td class="highlight-col">Men wanting no permanent implant & prioritising sexual preservation</td>
+              <td>Men wanting rapid relief without medication</td>
+              <td>Men with lateral lobe blockage seeking no tissue destruction</td>
+              <td>Men with very large prostate glands (&gt;80 grams)</td>
+              <td>Established surgical standard for severe obstruction</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Mandatory Medical Qualification (Brief Section 16 & 44) -->
-      <div class="disclaimer-card">
-        <strong>Important Clinical Note:</strong> The most suitable treatment depends on prostate size, gland anatomy (including median lobe involvement), symptom severity, current medications, overall cardiovascular health, and individual patient priorities. A complete urological evaluation including uroflowmetry and ultrasound is conducted before recommending any procedure.
+      <div class="disclaimer-card" style="margin-top:28px;">
+        <strong>Clinical Guidance Note:</strong> Every patient’s prostate anatomy is unique. Gland weight (in grams), presence of a middle lobe, post-void residual urine, and overall health determine the most suitable approach. An ultrasound scan and uroflowmetry flow test help guide the ideal choice.
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED PROCEDURE SECTIONS (Answering Patient Questions in Simple Language) -->
+
+  <!-- 1. iTind Procedure Section -->
+  <section id="itind" class="section-padding bg-page" style="border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="prostate-editorial-grid">
+        <div>
+          <span class="section-tag">Temporary Remodeling Innovation</span>
+          <h2 style="color:var(--color-navy); font-size:1.85rem; margin-bottom:14px;">iTind™ Procedure: Gentle, Temporary Channel Reshaping</h2>
+          <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:16px;">
+            The <strong>iTind™ procedure</strong> is an innovative, minimally invasive treatment designed for men suffering from mild to moderate enlarged prostate symptoms. Instead of cutting, heating, or removing tissue, a tiny, flexible basket made from a memory-metal called nitinol is gently placed inside the prostatic channel.
+          </p>
+          <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:18px;">
+            Over just <strong>5 to 7 days</strong>, the device applies gentle, continuous pressure at three specific points, naturally expanding the urinary pathway. On day 5 or 7, the device is completely removed during a quick outpatient clinic visit. <strong>No permanent hardware or implants are left inside your body.</strong>
+          </p>
+
+          <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-left:4px solid var(--color-gold); border-radius:var(--radius-md); padding:18px 22px; margin-bottom:22px;">
+            <h4 style="color:var(--color-navy); font-size:1.05rem; margin-bottom:8px;">Key Patient Advantages of iTind™:</h4>
+            <ul style="margin:0; padding-left:20px; font-size:0.925rem; color:var(--text-body); display:flex; flex-direction:column; gap:6px;">
+              <li><strong>Zero Permanent Hardware:</strong> The device is completely removed after 5 to 7 days.</li>
+              <li><strong>Preserves Sexual Function:</strong> Clinical studies show high preservation rates for both erectile function and normal ejaculation, without thermal or cutting damage.</li>
+              <li><strong>Usually No Catheter:</strong> Most men go home without needing a urinary catheter.</li>
+              <li><strong>Fast Day-care Procedure:</strong> Placed in just 10–15 minutes under light local sedation.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:12px;">
+            <a href="itind-indore.html" class="btn btn-primary">
+              Read Complete iTind™ Patient Guide <i class="fa fa-arrow-right"></i>
+            </a>
+            <button type="button" class="btn btn-outline js-book-btn" data-source="prostate_itind_section">
+              Consult About iTind™
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div style="background:var(--bg-white); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:28px; box-shadow:var(--shadow-subtle);">
+            <h3 style="color:var(--color-navy); font-size:1.25rem; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+              How the 5–7 Day iTind Pathway Works
+            </h3>
+            
+            <div style="display:flex; flex-direction:column; gap:18px;">
+              <div style="display:flex; gap:14px; align-items:flex-start;">
+                <span style="background:var(--color-navy); color:#ffffff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:0.85rem;">1</span>
+                <div>
+                  <strong style="color:var(--color-navy); display:block; font-size:0.95rem; margin-bottom:3px;">Day 1: Gentle Placement</strong>
+                  <p style="font-size:0.875rem; color:var(--text-muted); margin:0; line-height:1.5;">The folded device is gently placed into the prostate in a 10–15 minute day-care procedure. It gently expands to its natural shape.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:14px; align-items:flex-start;">
+                <span style="background:var(--color-gold); color:#ffffff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:0.85rem;">2</span>
+                <div>
+                  <strong style="color:var(--color-navy); display:block; font-size:0.95rem; margin-bottom:3px;">Days 1–7: Gentle Reshaping</strong>
+                  <p style="font-size:0.875rem; color:var(--text-muted); margin:0; line-height:1.5;">The device presses gently to remodel the urinary channel while you carry on light daily routines at home.</p>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:14px; align-items:flex-start;">
+                <span style="background:#059669; color:#ffffff; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:0.85rem;">3</span>
+                <div>
+                  <strong style="color:var(--color-navy); display:block; font-size:0.95rem; margin-bottom:3px;">Day 5–7: Device Removal</strong>
+                  <p style="font-size:0.875rem; color:var(--text-muted); margin:0; line-height:1.5;">The device is retrieved smoothly in a quick clinic visit. The newly widened channel remains naturally open.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. UroLift Section -->
+  <section id="urolift" class="section-padding" style="background:var(--bg-white); border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="max-width:840px;">
+        <span class="section-tag">Prostatic Urethral Lift</span>
+        <h2 style="color:var(--color-navy); font-size:1.85rem; margin-bottom:14px;">UroLift® System: Holding the Pathway Open</h2>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:16px;">
+          The <strong>UroLift® System</strong> is a proven, non-surgical approach that treats enlarged prostate without destroying or heating tissue. Think of it like window curtain ties: tiny, permanent medical implants are placed to gently hold back the enlarged prostate lobes, creating a clear and open path for urine.
+        </p>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:20px;">
+          UroLift is an outpatient procedure performed in less than an hour. Because no prostate tissue is cut or removed, recovery is rapid, and patients typically experience symptom relief within weeks while maintaining sexual and ejaculatory health.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <button type="button" class="btn btn-primary js-book-btn" data-source="prostate_urolift_section">
+            Consult Dr. Chipde on UroLift®
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HoLEP Laser Section -->
+  <section id="holep" class="section-padding bg-page" style="border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="max-width:840px;">
+        <span class="section-tag">Advanced Laser Enucleation</span>
+        <h2 style="color:var(--color-navy); font-size:1.85rem; margin-bottom:14px;">HoLEP: Holmium Laser Enucleation of the Prostate</h2>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:16px;">
+          For men with <strong>very large prostate glands</strong> (greater than 80 to 100 grams), minimally invasive clips or vapor devices may not be sufficient. <strong>HoLEP</strong> uses a high-powered Holmium laser to carefully separate and remove the entire obstructing core of the prostate along its natural anatomical capsule.
+        </p>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:20px;">
+          Because the laser seals blood vessels as it works, bleeding is minimal, catheter time is much shorter than traditional open surgery (typically 24 to 48 hours), and long-term recurrence rates are exceptionally low.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <button type="button" class="btn btn-primary js-book-btn" data-source="prostate_holep_section">
+            Discuss HoLEP Laser Care
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TURP Section -->
+  <section id="turp" class="section-padding" style="background:var(--bg-white); border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="max-width:840px;">
+        <span class="section-tag">Established Surgical Standard</span>
+        <h2 style="color:var(--color-navy); font-size:1.85rem; margin-bottom:14px;">TURP: Transurethral Resection of the Prostate</h2>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:16px;">
+          <strong>TURP</strong> has been the global clinical benchmark for prostate surgery for decades. In this procedure, an endoscopic instrument is passed through the natural urinary channel under spinal anesthesia, and precision electrical loops trim away the excess prostate tissue obstructing the bladder outlet.
+        </p>
+        <p style="font-size:1rem; color:var(--text-body); line-height:1.7; margin-bottom:20px;">
+          TURP remains an essential and highly dependable option for men with significant urinary retention, bladder stones, or when gland anatomy is not suitable for newer devices. Hospital stay is typically 2 to 3 days, followed by several weeks of restful healing.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <button type="button" class="btn btn-primary js-book-btn" data-source="prostate_turp_section">
+            Consult About Prostate Surgery
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -3782,8 +4003,8 @@ p:last-child {
 
           <!-- Urgent Assistance Notice -->
           <div class="modal-urgent-note">
-            <span><i class="fa fa-ambulance" aria-hidden="true"></i> Urgent symptoms? <a href="tel:+917869392498" class="urgent-phone-link">Call Emergency: +91 78693 92498</a></span>
-            <span>or <a href="https://wa.me/917869392498" target="_blank" rel="noopener noreferrer" class="urgent-wa-link"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat Directly on WhatsApp</a></span>
+            <span><i class="fa fa-ambulance" aria-hidden="true"></i> Urgent symptoms? <a href="tel:07312445566" class="urgent-phone-link">Apollo 24×7 Emergency: 0731-2445566</a></span>
+            <span>or <a href="https://wa.me/917869392498" target="_blank" rel="noopener noreferrer" class="urgent-wa-link"><i class="fa fa-whatsapp" aria-hidden="true"></i> Clinic Desk WhatsApp</a></span>
           </div>
         </form>
       </div>
@@ -3861,14 +4082,14 @@ p:last-child {
         <div class="footer-col">
           <h4 class="footer-heading" style="color:#ffffff; margin-bottom:16px;">Treatments &amp; Guides</h4>
           <ul class="footer-nav footer-links" style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-            <li style="list-style:none; margin:0; padding:0;"><a href="prostate-care.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Prostate Care &amp; TURP</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="prostate-care.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Prostate Care (Rezūm, iTind, TURP)</a></li>
             <li style="list-style:none; margin:0; padding:0;"><a href="rezum-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Rezūm™ Water Vapor Therapy</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="itind-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">iTind™ Procedure Guide</a></li>
             <li style="list-style:none; margin:0; padding:0;"><a href="kidney-stone-treatment.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Kidney Stones &amp; Laser Lithotripsy</a></li>
             <li style="list-style:none; margin:0; padding:0;"><a href="kidney-transplant.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Kidney Transplantation</a></li>
             <li style="list-style:none; margin:0; padding:0;"><a href="robotic-urology-surgery.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Robotic Urology Surgery</a></li>
             <li style="list-style:none; margin:0; padding:0;"><a href="sexual-health.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Men's Health &amp; Sexual Wellness</a></li>
-            <li style="list-style:none; margin:0; padding:0;"><a href="other-urology-treatments.html#av-fistula" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">AV Fistula &amp; Dialysis Access</a></li>
-            <li style="list-style:none; margin:0; padding:0;"><a href="rezum-cost-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Rezūm Cost &amp; Insurance Guide</a></li>
+            <li style="list-style:none; margin:0; padding:0;"><a href="rezum-cost-indore.html" style="color:#cbd5e1; font-size:0.9rem; text-decoration:none;">Rezūm Patient &amp; Candidacy Guide</a></li>
           </ul>
         </div>
 
@@ -3881,8 +4102,11 @@ p:last-child {
             Sector-D, Scheme No. 74C, Vijay Nagar,<br>
             Indore, Madhya Pradesh 452010
           </p>
-          <p style="color:var(--text-light); font-size:0.9rem; margin-bottom:8px;">
-            <strong>Direct Phone:</strong> <a href="tel:+917869392498" style="color:#ffffff;">+91 78693 92498</a>
+          <p style="color:var(--text-light); font-size:0.875rem; margin-bottom:6px;">
+            <strong>24×7 Emergency Desk:</strong> <a href="tel:07312445566" style="color:#ffffff;">0731-2445566</a>
+          </p>
+          <p style="color:var(--text-light); font-size:0.875rem; margin-bottom:8px;">
+            <strong>Doctor OPD Desk:</strong> <a href="tel:+917869392498" style="color:#ffffff;">+91 78693 92498</a>
           </p>
           <p style="color:var(--text-light); font-size:0.9rem; margin-bottom:12px;">
             <strong>WhatsApp:</strong> <a href="https://wa.me/917869392498?text=Hello%20Dr.%20Chipde%27s%20clinic" target="_blank" rel="noopener" style="color:var(--color-gold);">Message Clinic</a>

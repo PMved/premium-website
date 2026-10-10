@@ -2559,12 +2559,50 @@ p:last-child {
   transform: translateY(-50%) translateX(0);
 }
 
-/* Mobile & Tablet Responsive Constraint: Hidden <= 1024px */
+/* Responsive Floating Utility Sidebar for Tablet & Mobile (Shows social presence rail on the right) */
 @media (max-width: 1024px) {
   .floating-utility-sidebar {
+    display: flex !important;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 6px;
+    z-index: 990;
+  }
+
+  /* On mobile and tablet, hide floating Book pill because bottom sticky dock provides primary thumb-accessible Book CTA */
+  .floating-section-book {
+    display: none !important;
+  }
+
+  /* Compact, sleek social presence rail docked on the right */
+  .floating-social-rail {
+    width: 38px;
+    padding: 5px 3px;
+    border-radius: 8px 0 0 8px;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: -2px 3px 12px rgba(11, 31, 51, 0.16);
+    border: 1px solid var(--border-subtle);
+    border-right: none;
+  }
+
+  .utility-social-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+
+  /* Suppress desktop tooltip balloons on touch devices */
+  .utility-social-icon[data-tooltip]::before,
+  .utility-social-icon[data-tooltip]::after {
     display: none !important;
   }
 }
+
 
 /* ---------------- Mobile Drawer Accordions (CR Section 8 & 13) ---------------- */
 .mobile-accordion-group {
@@ -2836,22 +2874,48 @@ p:last-child {
 
 /* Mobile & Tablet responsiveness for topbar & responsive shell */
 @media (max-width: 992px) {
+  .emergency-guidance-bar {
+    padding: 7px 0;
+  }
   .emergency-bar-inner {
     flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+  .emergency-text-group {
+    flex: 0 0 auto !important;
+    width: 100%;
     align-items: flex-start;
+    gap: 8px;
+  }
+  .emergency-icon-badge {
+    width: 26px;
+    height: 26px;
+    font-size: 0.8rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .emergency-message {
+    font-size: 0.775rem;
+    line-height: 1.35;
   }
   .emergency-cta-group {
     width: 100%;
+    margin-top: 0;
   }
   .emergency-call-btn {
     width: 100%;
     justify-content: center;
-    min-height: 44px;
+    padding: 5px 14px;
+    font-size: 0.775rem;
+    min-height: 32px;
+    border-radius: 999px;
   }
   .clinical-strip-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 5px;
   }
   .clinical-strip-right {
     gap: 10px;
@@ -2860,18 +2924,28 @@ p:last-child {
 
 @media (max-width: 768px) {
   .emergency-guidance-bar {
-    padding: 8px 0;
+    padding: 6px 0;
+  }
+  .emergency-bar-inner {
+    gap: 5px;
   }
   .emergency-text-group {
-    align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
   .emergency-icon-badge {
-    margin-top: 2px;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    margin-top: 1px;
   }
   .emergency-message {
-    font-size: 0.8125rem;
-    line-height: 1.4;
+    font-size: 0.75rem;
+    line-height: 1.32;
+  }
+  .emergency-call-btn {
+    min-height: 30px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
   }
   .facility-capsule-badge {
     border-radius: var(--radius-sm);
